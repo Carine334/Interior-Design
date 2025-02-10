@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Preferences</title>
+  <!-- Add Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .gradient-form {
+      background-color: #f0f0f0;
+    }
+
+    .gradient-custom-2 {
+      background: linear-gradient(to right, #ff6f61, #ff9068);
+    }
+
+    .card {
+      border-radius: 20px;
+    }
+
+    .form-check-label {
+      font-size: 1.1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .text-center h4 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <section class="h-100 gradient-form" style="background-color: #f0f0f0;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-8">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-12">
+                <div class="card-body p-md-5 mx-md-4">
+                  <div class="text-center mb-4">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">Set Your Interior Preferences</h4>
+                  </div>
+                  <form method="POST" action="{{ url_for('preferences') }}">
+                    <p class="text-center">Select your preferred interior design styles</p>
+                    <p class="text-center">You can select up to 5 styles</p>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Art Deco" id="art-deco">
+                      <label class="form-check-label" for="art-deco">Art Deco</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Bohemian" id="bohemian">
+                      <label class="form-check-label" for="bohemian">Bohemian</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Coastal" id="coastal">
+                      <label class="form-check-label" for="coastal">Coastal</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Contemporary" id="contemporary">
+                      <label class="form-check-label" for="contemporary">Contemporary</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Eclectic" id="eclectic">
+                      <label class="form-check-label" for="eclectic">Eclectic</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Farmhouse" id="farmhouse">
+                      <label class="form-check-label" for="farmhouse">Farmhouse</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Mediterranean" id="mediterranean">
+                      <label class="form-check-label" for="mediterranean">Mediterranean</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Mid-Century Modern" id="mid-century">
+                      <label class="form-check-label" for="mid-century">Mid-Century Modern</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Rustic" id="rustic">
+                      <label class="form-check-label" for="rustic">Rustic</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Traditional" id="traditional">
+                      <label class="form-check-label" for="traditional">Traditional</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" name="preferences" value="Transitional" id="transitional">
+                      <label class="form-check-label" for="transitional">Transitional</label>
+                    </div>
+
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Save Preferences</button>
+                    </div>
+                  </form>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

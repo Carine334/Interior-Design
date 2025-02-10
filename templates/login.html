@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Interior Design Recommender</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #3a6ea5;
+      --secondary-color: #ff6b6b;
+      --background-color: #f4f7f9;
+      --text-color: #333;
+      --card-bg: #ffffff;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-color);
+      background-color: var(--background-color);
+    }
+    .gradient-form {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .gradient-custom-2 {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .form-control {
+      border: none;
+      border-bottom: 2px solid #ddd;
+      border-radius: 0;
+      padding: 10px 0;
+      transition: border-color 0.3s ease;
+    }
+    .form-control:focus {
+      box-shadow: none;
+      border-color: var(--primary-color);
+    }
+    .btn-primary {
+      background: var(--primary-color);
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    h4 {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    h5 {
+      font-weight: 900;
+      color: white;
+    }
+    .alert {
+      transition: opacity 1s ease-out;
+    }
+    .fade {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <section class="gradient-form">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-xl-10">
+          <div class="card">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+                  <div class="text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 185px;" alt="logo" class="logo">
+                    <h4 class="mt-1 mb-5 pb-1">Welcome to Interior Design Recommender</h4>
+                  </div>
+                  <form method="POST" action="{{ url_for('login') }}">
+                    <p>Please login to your account</p>
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <div class="form-outline mb-4">
+                      <input type="text" name="username" id="username" class="form-control" placeholder="Username" required />
+                    </div>
+                    <div class="form-outline mb-4">
+                      <input type="password" name="password" id="password" class="form-control" placeholder="Password" required />
+                    </div>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button type="submit" class="btn btn-primary btn-block fa-lg mb-3">Login</button>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center pb-4">
+                      <p class="mb-0 me-2">Don't have an account?</p>
+                      <a href="{{ url_for('register') }}" class="btn btn-outline-primary">Register</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h5 class="mb-4">Discover Your Perfect Interior Design</h4>
+                  <p class="small mb-0">Our AI-powered recommendation system helps you find the ideal interior design schemes tailored to your preferences. Experience personalized suggestions and create your dream space effortlessly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+  <div class="alert-container position-fixed top-0 end-0 p-3">
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+  <script>
+    setTimeout(function() {
+      let alerts = document.querySelectorAll('.alert');
+      alerts.forEach(function(alert) {
+        alert.classList.add('fade');
+        setTimeout(function() {
+          alert.style.display = 'none';
+        }, 1000);
+      });
+    }, 3000);
+  </script>
+</body>
+</html>
